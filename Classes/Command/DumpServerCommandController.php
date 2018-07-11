@@ -28,12 +28,14 @@ class DumpServerCommandController extends CommandController
      */
     public function startCommand()
     {
+        $descriptor = new CliDescriptor(new CliDumper());
+
         $this->outputLine('Neos Var Dump Server');
         $this->outputLine(sprintf('Server listening on %s', $this->dumpServer->getHost()));
         $this->outputLine('Quit the server with CONTROL-C.');
 
-        $this->dumpServer->listen(function (Data $data, array $context, int $clientId) {
-            $this->output(\Neos\Flow\var_dump($data, $context[0]['title'], true, $context[0]['plaintext']));
+        $this->dumpServer->listen(function (Data $data, array $context, int $clientId) use ($descriptor) {
+            $descriptor->describe($this->output->getOutput(), $data, $context, $clientId);
         });
     }
 }
