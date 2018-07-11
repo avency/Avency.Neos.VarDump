@@ -2,6 +2,7 @@
 namespace Avency\Neos\VarDump\Service;
 
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Error\Debugger;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Server\Connection;
 
@@ -27,12 +28,14 @@ class VarDump
             return \Neos\Flow\var_dump($value, $title, $return, $plaintext);
         }
 
-        $connection = new Connection(
-            'tcp://0.0.0.0:9912',
-            [
-            ]
+        $connection = new Connection('tcp://0.0.0.0:9912');
+
+        if ($title === null) {
+            $title = 'Flow Variable Dump';
+        }
+        $data = (new VarCloner())->cloneVar(
+            "\x1B[1m" . $title . "\x1B[0m" . chr(10) . Debugger::renderDump($value, 0, true, true) . chr(10) . chr(10)
         );
-        $data = (new VarCloner())->cloneVar($value);
         if (!$connection || !$connection->write($data)) {
             \Neos\Flow\var_dump($value, $title, $return, $plaintext);
         }
