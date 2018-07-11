@@ -1,0 +1,4 @@
+Symfony\Component\VarDumper\Server\DumpServer:
+  arguments:
+    1:
+      value: 'tcp://0.0.0.0:9912'

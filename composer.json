@@ -1,0 +1,15 @@
+{
+  "name": "avency/neos-vardump",
+  "type": "neos-plugin",
+  "description": "Avency Neos VarDump Package",
+  "require": {
+    "neos/flow": "*",
+    "symfony/var-dumper": "^4.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Avency\\Neos\\VarDump\\": "Classes"
+    },
+    "files": ["Functions/VarDump.php"]
+  }
+}
