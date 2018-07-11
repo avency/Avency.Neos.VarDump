@@ -1,7 +1,9 @@
 {
   "name": "avency/neos-vardump",
   "type": "neos-package",
-  "description": "Avency Neos VarDump Package",
+  "description": "Neos VarDump Package",
+  "homepage": "https://www.avency.de",
+  "license": ["MIT"],
   "require": {
     "neos/flow": "*",
     "symfony/var-dumper": "^4.1"
