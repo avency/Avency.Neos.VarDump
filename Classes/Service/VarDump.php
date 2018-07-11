@@ -1,6 +1,7 @@
 <?php
 namespace Avency\Neos\VarDump\Service;
 
+use Avency\Neos\VarDump\ContextProvider\NeosContextProvider;
 use Neos\Flow\Annotations as Flow;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Server\Connection;
@@ -26,7 +27,13 @@ class VarDump
         if ($return) {
             return \Neos\Flow\var_dump($value, $title, $return, $plaintext);
         }
-        $connection = new Connection('tcp://0.0.0.0:9912');
+
+        $connection = new Connection(
+            'tcp://0.0.0.0:9912',
+            [
+                new NeosContextProvider($title, $plaintext)
+            ]
+        );
         $data = (new VarCloner())->cloneVar($value);
         if (!$connection || !$connection->write($data)) {
             \Neos\Flow\var_dump($value, $title, $return, $plaintext);
