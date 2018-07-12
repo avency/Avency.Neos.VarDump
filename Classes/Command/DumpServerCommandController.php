@@ -3,9 +3,9 @@ namespace Avency\Neos\VarDump\Command;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
+use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\VarDumper\Cloner\Data;
-use Symfony\Component\VarDumper\Command\Descriptor\CliDescriptor;
-use Symfony\Component\VarDumper\Dumper\CliDumper;
 use Symfony\Component\VarDumper\Server\DumpServer;
 
 /**
@@ -28,9 +28,13 @@ class DumpServerCommandController extends CommandController
      */
     public function startCommand()
     {
-        $this->outputLine('Neos Var Dump Server');
-        $this->outputLine(sprintf('Server listening on %s', $this->dumpServer->getHost()));
-        $this->outputLine('Quit the server with CONTROL-C.');
+        $io = new SymfonyStyle(new StringInput(''), $this->output->getOutput());
+        $io->title('Neos Var Dump Server');
+
+        $this->dumpServer->start();
+
+        $io->success(sprintf('Server listening on %s', $this->dumpServer->getHost()));
+        $io->comment('Quit the server with CONTROL-C.');
 
         $this->dumpServer->listen(function (Data $data, array $context, int $clientId) {
             $this->output($data->getValue());
