@@ -2,5 +2,3 @@ Symfony\Component\VarDumper\Server\DumpServer:
   arguments:
     1:
       value: 'tcp://0.0.0.0:9912'
-    2:
-      object: Neos\Flow\Log\PsrSystemLoggerInterface
