@@ -5,7 +5,7 @@
   "homepage": "https://www.avency.de",
   "license": ["MIT"],
   "require": {
-    "neos/flow": "^5.0 || ^6.0 || ^7.0 || dev-master",
+    "neos/flow": "^5.0 || ^6.0 || ^7.0 || ^8.0 || dev-master",
     "symfony/var-dumper": "~5.2.4"
   },
   "autoload": {
