@@ -17,12 +17,12 @@ class VarDump
      * Dump a value
      *
      * @param mixed $value
-     * @param string $title
+     * @param string|null $title
      * @param bool $return
-     * @param bool $plaintext
+     * @param bool|null $plaintext
      * @return void|string
      */
-    public static function dump($value, string $title = null, bool $return = false, bool $plaintext = null)
+    public static function dump($value, ?string $title = null, bool $return = false, ?bool $plaintext = null)
     {
         if ($return) {
             return \Neos\Flow\var_dump($value, $title, $return, $plaintext);

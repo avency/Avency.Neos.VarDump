@@ -5,12 +5,12 @@ use Avency\Neos\VarDump\Service\VarDump;
 
 /**
  * @param mixed $value
- * @param string $title
+ * @param string|null $title
  * @param bool $return
- * @param bool $plaintext
- * @return void|string
+ * @param bool|null $plaintext
+ * @return void
  */
-function var_dump($value, string $title = null, bool $return = false, bool $plaintext = null)
+function var_dump($value, ?string $title = null, bool $return = false, ?bool $plaintext = null): void
 {
     VarDump::dump($value, $title, $return, $plaintext);
 }
