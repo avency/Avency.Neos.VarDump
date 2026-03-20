@@ -6,7 +6,7 @@
   "license": ["MIT"],
   "require": {
     "php": ">=8.2",
-    "neos/flow": "^8.0 || dev-master",
+    "neos/flow": "^8.0 || ^9.0 || dev-master",
     "symfony/var-dumper": "~7.4.4"
   },
   "autoload": {
